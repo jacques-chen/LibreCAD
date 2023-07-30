@@ -116,6 +116,7 @@ INCLUDEPATH += \
     ../res
 
 RESOURCES += ../res/extui/extui.qrc
+RESOURCES += ../res/actions/actions.qrc
 RESOURCES += ../res/icons/icons.qrc
 RESOURCES += ../res/ui/ui.qrc
 RESOURCES += ../res/main/main.qrc
