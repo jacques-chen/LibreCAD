@@ -23,11 +23,11 @@
 ** This copyright notice MUST APPEAR in all copies of the script!
 **
 **********************************************************************/
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/io.hpp>
-#include <boost/numeric/ublas/lu.hpp>
-#include <boost/math/special_functions/ellint_2.hpp>
-
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <complex>
+#include <QString>
 #include <cmath>
 #include <muParser.h>
 #include <QString>
@@ -870,50 +870,6 @@ bool RS_Math::linearSolver(const std::vector<std::vector<double> >& mt, std::vec
 }))
 		return false;
     sn.resize(mSize);//to hold the solution
-#if false
-    boost::numeric::ublas::matrix<double> bm (mSize, mSize);
-    boost::numeric::ublas::vector<double> bs(mSize);
-
-    for(int i=0;i<mSize;i++) {
-        for(int j=0;j<mSize;j++) {
-            bm(i,j)=mt[i][j];
-        }
-        bs(i)=mt[i][mSize];
-    }
-    //solve the linear equation set by LU decomposition in boost ublas
-
-    if ( boost::numeric::ublas::lu_factorize<boost::numeric::ublas::matrix<double> >(bm) ) {
-		std::cout<<__FILE__<<" : "<<__func__<<" : line "<<__LINE__<<std::endl;
-        std::cout<<" linear solver failed"<<std::endl;
-        //        RS_DEBUG->print(RS_Debug::D_WARNING, "linear solver failed");
-        return false;
-    }
-
-    boost::numeric::ublas:: triangular_matrix<double, boost::numeric::ublas::unit_lower>
-            lm = boost::numeric::ublas::triangular_adaptor< boost::numeric::ublas::matrix<double>,  boost::numeric::ublas::unit_lower>(bm);
-    boost::numeric::ublas:: triangular_matrix<double,  boost::numeric::ublas::upper>
-            um =  boost::numeric::ublas::triangular_adaptor< boost::numeric::ublas::matrix<double>,  boost::numeric::ublas::upper>(bm);
-    ;
-    boost::numeric::ublas::inplace_solve(lm,bs, boost::numeric::ublas::lower_tag());
-    boost::numeric::ublas::inplace_solve(um,bs, boost::numeric::ublas::upper_tag());
-    for(int i=0;i<mSize;i++){
-        sn[i]=bs(i);
-    }
-    //    std::cout<<"dn="<<dn<<std::endl;
-    //    data.center.set(-0.5*dn(1)/dn(0),-0.5*dn(3)/dn(2)); // center
-    //    double d(1.+0.25*(dn(1)*dn(1)/dn(0)+dn(3)*dn(3)/dn(2)));
-    //    if(std::abs(dn(0))<RS_TOLERANCE2
-    //            ||std::abs(dn(2))<RS_TOLERANCE2
-    //            ||d/dn(0)<RS_TOLERANCE2
-    //            ||d/dn(2)<RS_TOLERANCE2
-    //            ) {
-    //        //ellipse not defined
-    //        return false;
-    //    }
-    //    d=sqrt(d/dn(0));
-    //    data.majorP.set(d,0.);
-    //    data.ratio=sqrt(dn(0)/dn(2));
-#else
     // solve the linear equation by Gauss-Jordan elimination
 	std::vector<std::vector<double> > mt0(mt); //copy the matrix;
 	for(size_t i=0;i<mSize;++i){
@@ -956,7 +912,6 @@ bool RS_Math::linearSolver(const std::vector<std::vector<double> >& mt, std::vec
 	for(size_t i=0;i<mSize;++i) {
         sn[i]=mt0[i][mSize];
     }
-#endif
 
     return true;
 }
@@ -971,10 +926,10 @@ bool RS_Math::linearSolver(const std::vector<std::vector<double> >& mt, std::vec
 double RS_Math::ellipticIntegral_2(const double& k, const double& phi)
 {
     double a= remainder(phi-M_PI_2,M_PI);
-    if(a>0.) {
-        return boost::math::ellint_2<double,double>(k,a);
+    if(a > 0.) {
+        return std::ellint_2(k, a);
     } else {
-        return - boost::math::ellint_2<double,double>(k,std::abs(a));
+        return - std::ellint_2(k, fabs(a));
     }
 }
 

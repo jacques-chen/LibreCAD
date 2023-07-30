@@ -24,7 +24,7 @@
 ** This copyright notice MUST APPEAR in all copies of the script!
 **
 **********************************************************************/
-
+#include <iostream>
 #include "rs_ellipse.h"
 
 #include  "lc_quadratic.h"
@@ -40,19 +40,6 @@
 #include "rs_painter.h"
 #include "rs_painterqt.h"
 
-#ifdef EMU_C99
-#include "emu_c99.h" /* C99 math */
-#endif
-// Workaround for Qt bug: https://bugreports.qt-project.org/browse/QTBUG-22829
-// TODO: the Q_MOC_RUN detection shouldn't be necessary after this Qt bug is resolved
-#ifndef Q_MOC_RUN
-#include <boost/version.hpp>
-#include <boost/math/tools/roots.hpp>
-#include <boost/math/special_functions/ellint_2.hpp>
-#if BOOST_VERSION > 104500
-#include <boost/tuple/tuple.hpp>
-#endif
-#endif
 
 namespace{
 //functor to solve for distance, used by snapDistance
@@ -70,21 +57,16 @@ public:
 	void setDistance(const double& target){
 		distance=target;
 	}
-#if BOOST_VERSION > 104500
-    boost::tuples::tuple<double, double, double> operator()(double const& z) const {
-#else
-	boost::fusion::tuple<double, double, double> operator()(double const& z) const {
-#endif
+
+    std::tuple<double, double, double> operator()(double const& z) const
+    {
         double const cz=std::cos(z);
         double const sz=std::sin(z);
         //delta amplitude
         double const d=std::sqrt(1-k2*sz*sz);
         // return f(x), f'(x) and f''(x)
-#if BOOST_VERSION > 104500
-        return boost::tuples::make_tuple(
-#else
-        return boost::fusion::make_tuple(
-#endif
+
+        return std::make_tuple(
                     e.getEllipseLength(z) - distance,
                     ra * d,
                     k2ra * sz * cz / d );
@@ -130,13 +112,16 @@ RS_Vector getNearestDistHelper(RS_Ellipse const& e,
 
 	//solve equation of the distance by second order newton_raphson
     EllipseDistanceFunctor X{e, trimmed};
-	using namespace boost::math::tools;
-	double const sol =
-			halley_iterate<EllipseDistanceFunctor,double>(X,
-														  guess,
-														  x1,
-														  x1 + 2 * M_PI - RS_TOLERANCE_ANGLE,
-														  digits);
+    double sol = x1;
+    double sol0 = guess;
+    while (fabs(sol - sol0) > digits)
+    {
+        sol0 = sol;
+        double fx = std::get<0>(X(sol0));
+        double fx1 = std::get<1>(X(sol0));
+        double fx2 = std::get<2>(X(sol0));
+        sol = sol0 - 2 * fx * fx1 / (2 * fx1 * fx1 - fx * fx2);
+    }
 
 	RS_Vector const vp = e.getEllipsePoint(sol);
     if (dist)
@@ -413,7 +398,7 @@ double RS_Ellipse::getEllipseLength(double x1, double x2) const
                (static_cast<int>((x1+RS_TOLERANCE_ANGLE)/M_PI)
                 ))*2;
 //        std::cout<<"Adding "<<ret<<" of E("<<k<<")\n";
-        ret*=boost::math::ellint_2<double>(k);
+        ret*=std::comp_ellint_2(k);
     } else {
         ret=0.;
     }
@@ -437,7 +422,7 @@ double RS_Ellipse::getEllipseLength(double x2) const
 /**
   * get the point on the ellipse arc and with arc distance from the start point
   * the distance is expected to be within 0 and getLength()
-  * using Newton-Raphson from boost
+  * using Newton-Raphson from eigen
   *
   *@author: Dongxu Li
   */

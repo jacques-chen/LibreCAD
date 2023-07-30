@@ -17,7 +17,7 @@ VERSION=$${LC_VERSION}
 GENERATED_DIR = ../../generated/librecad
 # Use common project definitions.
 include(../../common.pri)
-include(./boost.pri)
+include(./eigen.pri)
 include(./muparser.pri)
 
 CONFIG += qt \
@@ -27,7 +27,7 @@ CONFIG += qt \
     depend_includepath
 
 QT += widgets printsupport
-CONFIG += c++14
+CONFIG += c++17
 *-g++ {
     QMAKE_CXXFLAGS += -fext-numeric-literals
 }

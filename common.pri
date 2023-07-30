@@ -41,7 +41,7 @@ win32 {
             DEFINES += QT_NO_CONCURRENT=0
         }
         # Silence warning: typedef '...' locally defined but not used [-Wunused-local-typedefs]
-        # this was caused by boost headers and g++ 4.8.0 (Qt 5.1 / MinGW 4.8)
+        # this was caused by g++ 4.8.0 (Qt 5.1 / MinGW 4.8)
         greaterThan( QT_MAJOR_VERSION, 4 ) {
             QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
         }
