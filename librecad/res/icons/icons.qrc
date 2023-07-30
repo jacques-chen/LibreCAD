@@ -36,7 +36,6 @@
         <file>redo.svg</file>
         <file>undo.svg</file>
         <file>text.svg</file>
-        <file>mtext.svg</file>
         <file>hatch.svg</file>
         <file>create_block.svg</file>
         <file>points.svg</file>
@@ -69,7 +68,6 @@
         <file>circle_tangential_2points.svg</file>
         <file>circle_tangential_3entities.svg</file>
         <file>circle.svg</file>
-        <file>dim_vertical.svg</file>
         <file>ellipse_4_points.svg</file>
         <file>ellipse_arc_axis.svg</file>
         <file>ellipse_axis.svg</file>
@@ -85,8 +83,6 @@
         <file>line_parallel_p.svg</file>
         <file>line_parallel.svg</file>
         <file>line_perpendicular.svg</file>
-        <file>line_polygon_cen_cor.svg</file>
-        <file>line_polygon_cor_cor.svg</file>
         <file>line_rectangle.svg</file>
         <file>line_relative_angle.svg</file>
         <file>line_tangent_cc.svg</file>
@@ -102,11 +98,9 @@
         <file>dim_aligned.svg</file>
         <file>dim_angular.svg</file>
         <file>dim_diametric.svg</file>
-        <file>dim_horizontal.svg</file>
         <file>dim_leader.svg</file>
         <file>dim_linear.svg</file>
         <file>dim_radial.svg</file>
-        <file>dim_arc.svg</file>
         <file>distance_point_to_entity.svg</file>
         <file>distance_point_to_point.svg</file>
         <file>divide.svg</file>
@@ -114,7 +108,8 @@
         <file>explode.svg</file>
         <file>measure.svg</file>
         <file>mirror.svg</file>
-        <file>move_copy.svg</file>
+        <file>modify_copy.svg</file>
+        <file>modify_move.svg</file>
         <file>move_rotate.svg</file>
         <file>offset.svg</file>
         <file>polygonal_area.svg</file>
@@ -133,10 +128,8 @@
         <file>select_inverted.svg</file>
         <file>select_window.svg</file>
         <file>delete.svg</file>
-        <file>delete_freehand.svg</file>
         <file>total_length_selected_entities.svg</file>
         <file>zoom_pan.svg</file>
-        <file>order.svg</file>
         <file>up.svg</file>
         <file>down.svg</file>
         <file>downmost.svg</file>
@@ -198,28 +191,7 @@
         <file>text_align_topcenter.svg</file>
         <file>text_align_topleft.svg</file>
         <file>text_align_topright.svg</file>
-        <file>point_dot.svg</file>
-        <file>point_dot_circle.svg</file>
-        <file>point_dot_square.svg</file>
-        <file>point_dot_circle_square.svg</file>
-        <file>point_blank.svg</file>
-        <file>point_blank_circle.svg</file>
-        <file>point_blank_square.svg</file>
-        <file>point_blank_circle_square.svg</file>
-        <file>point_cross.svg</file>
-        <file>point_cross_circle.svg</file>
-        <file>point_cross_square.svg</file>
-        <file>point_cross_circle_square.svg</file>
-        <file>point_plus.svg</file>
-        <file>point_plus_circle.svg</file>
-        <file>point_plus_square.svg</file>
-        <file>point_plus_circle_square.svg</file>
-        <file>point_tick.svg</file>
-        <file>point_tick_circle.svg</file>
-        <file>point_tick_square.svg</file>
-        <file>point_tick_circle_square.svg</file>
         <file>options.svg</file>
-        <file>line_polygon_cen_tan.svg</file>
         <file>noconstruction.svg</file>
         <file>noprint.svg</file>
         <file>close_all.svg</file>

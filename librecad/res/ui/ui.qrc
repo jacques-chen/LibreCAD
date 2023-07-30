@@ -1,10 +1,5 @@
 <RCC>
     <qresource prefix="/ui">
-        <file>blockadd.png</file>
-        <file>blockattributes.png</file>
-        <file>blockedit.png</file>
-        <file>blockinsert.png</file>
-        <file>blockremove.png</file>
         <file>blockfreeze.png</file>
         <file>blockdefreeze.png</file>
         <file>color00.png</file>
@@ -20,21 +15,15 @@
         <file>color11.png</file>
         <file>color14.png</file>
         <file>colorxx.png</file>
-        <file>constructionlayer.png</file>
         <file>cur_cad_bmp.png</file>
         <file>cur_del_bmp.png</file>
         <file>cur_glass_bmp.png</file>
         <file>cur_hand_bmp.png</file>
         <file>cur_select_bmp.png</file>
-        <file>fileprint.png</file>
         <file>folderclosed.png</file>
         <file>folderopen.png</file>
         <file>hiddenblock.png</file>
-        <file>hiddenlayer.png</file>
         <file>layertoggle.png</file>
-        <file>layeradd.png</file>
-        <file>layeredit.png</file>
-        <file>layerremove.png</file>
         <file>linetype00.png</file>
         <file>linetype01.png</file>
         <file>linetype02.png</file>
@@ -43,11 +32,7 @@
         <file>linetype05.png</file>
         <file>linetype06.png</file>
         <file>linetype07.png</file>
-        <file>mouse.png</file>
-        <file>mousebuttons24.png</file>
-        <file>viewgrid.png</file>
         <file>visibleblock.png</file>
-        <file>visiblelayer.png</file>
         <file>width00.png</file>
         <file>width01.png</file>
         <file>width02.png</file>
