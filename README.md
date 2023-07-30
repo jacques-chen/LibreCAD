@@ -53,7 +53,8 @@ $ librecad dxf2png foo.dxf
 
 Requirements:
 
-- [Qt](https://www.qt.io/download-open-source/) 5.2.1+ (MinGW version on Windows)
+- [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
+- [Qt](https://www.qt.io/download-open-source/) 5.2.1+
 
 More information: [Build from source](https://github.com/LibreCAD/LibreCAD/wiki/Build-from-source)
 
