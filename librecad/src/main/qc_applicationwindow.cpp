@@ -49,9 +49,6 @@
 #include <QTimer>
 #include <QtSvg>
 
-#include <boost/version.hpp>
-
-
 #include "comboboxoption.h"
 #include "doc_plugin_interface.h"
 #include "main.h"
@@ -2916,8 +2913,7 @@ void QC_ApplicationWindow::showAboutWindow()
             tr("Compiler: Microsoft Visual C++") + "\n" +
         #endif
         tr("Compiled on: %1").arg(__DATE__) + "\n" +
-        tr("Qt Version: %1").arg(qVersion()) + "\n" +
-        tr("Boost Version: %1.%2.%3").arg(BOOST_VERSION / 100000).arg(BOOST_VERSION / 100 % 1000).arg(BOOST_VERSION % 100)
+        tr("Qt Version: %1").arg(qVersion()) + "\n"
     );
 
     auto app_info = new QLabel(info);

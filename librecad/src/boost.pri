@@ -5,7 +5,7 @@
 exists( custom.pro ):include( custom.pro )
 exists( custom.pri ):include( custom.pri )
 
-BOOST_LIBS =
+BOOST_LIBS = "C:/DEV/boost_1_82_0"
 
 unix {
     defineTest( checkBoostIncDir ) {
@@ -138,7 +138,7 @@ win32 {
 		BOOST_DIR = "$$(BOOST_DIR)"
 	} else:isEmpty( BOOST_DIR ) {
 		# BOOST_DIR QMake variable is not set at all (in custom.pro), use a hardcoded default:
-		BOOST_DIR = "/boost/boost_1_53_0"
+                BOOST_DIR = "C:/DEV/boost_1_82_0"
     }
 
     !exists( "$${BOOST_DIR}/boost/version.hpp" ) {
