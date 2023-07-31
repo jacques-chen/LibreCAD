@@ -22,7 +22,6 @@ include(../../common.pri)
 QT -= svg
 
 HEADERS += \
-    include/muParserInt.h \
     include/muParserTokenReader.h \
     include/muParserToken.h \
     include/muParserStack.h \
