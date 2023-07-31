@@ -29,7 +29,6 @@
 #include <complex>
 #include <QString>
 #include <cmath>
-#include <muParser.h>
 #include <QString>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
@@ -39,6 +38,7 @@
 #include "rs_math.h"
 #include "rs_vector.h"
 #include "rs_debug.h"
+#include "rs_parser.h"
 
 #ifdef EMU_C99
 #include "emu_c99.h"
@@ -331,30 +331,25 @@ QString RS_Math::derationalize(const QString& expr) {
  */
 double RS_Math::eval(const QString& expr, bool* ok) {
     bool okTmp(false);
-	if(!ok) ok=&okTmp;
+    if(!ok) { ok = &okTmp; }
     if (expr.isEmpty()) {
         *ok = false;
         return 0.0;
     }
-
-    QString derationalized = derationalize(expr);
-
     double ret(0.);
-    try{
-        mu::Parser p;
-        p.DefineConst(_T("pi"),M_PI);
-#ifdef _UNICODE
-        p.SetExpr(derationalized.toStdWString());
-#else
-        p.SetExpr(derationalized.toStdString());
-#endif
-        ret=p.Eval();
-        *ok=true;
-    }
-    catch (mu::Parser::exception_type &e)
-    {
-        mu::console() << e.GetMsg() << std::endl;
-        *ok=false;
+    try {
+        RS_Parser Par;
+        //p.DefineConst(_T("pi"),M_PI);
+        char  *ch;
+        QByteArray ba = expr.toLatin1(); // must
+        ch = ba.data();
+        Par.Compile(ch);
+        Par.Evaluate();
+        ret = Par.GetResult();
+        *ok = true;
+    } catch (const char *msg) {
+        cerr << msg << endl;
+        *ok = false;
     }
     return ret;
 }

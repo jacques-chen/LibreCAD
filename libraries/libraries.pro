@@ -19,4 +19,3 @@ macx|win32|equals(build_muparser, "true")|!packagesExist(muparser){
         message("Using external muparser lib")
 }
 
-

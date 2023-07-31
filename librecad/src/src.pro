@@ -210,6 +210,7 @@ HEADERS += \
     lib/information/rs_locale.h \
     lib/information/rs_information.h \
     lib/information/rs_infoarea.h \
+    lib/math/rs_parser.h \
     lib/modification/rs_modification.h \
     lib/modification/rs_selection.h \
     lib/math/rs_math.h \
@@ -300,6 +301,7 @@ SOURCES += \
     lib/information/rs_infoarea.cpp \
     lib/math/rs_math.cpp \
     lib/math/lc_quadratic.cpp \
+    lib/math/rs_parser.cpp \
     lib/modification/rs_modification.cpp \
     lib/modification/rs_selection.cpp \
     lib/engine/rs_color.cpp \
