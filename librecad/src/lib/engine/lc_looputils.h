@@ -66,18 +66,16 @@ public:
      */
     std::vector<std::unique_ptr<RS_EntityContainer>> extract();
 private:
+    // validate the loop m_loop
+    bool validate() const;
     RS_Entity* findFirst() const;
     bool findNext() const;
     std::vector<RS_Entity*> getConnected() const;
     RS_Entity* findOutermost(std::vector<RS_Entity*> edges) const;
     mutable std::unique_ptr<RS_EntityContainer> m_loop;
     mutable std::vector<std::unique_ptr<RS_EntityContainer>> m_loops;
-    RS_Vector getInternalPoint() const;
     struct LoopData;
     std::unique_ptr<LoopData> m_data;
-
-    RS_EntityContainer& m_edges;
-    double m_size;
 };
 
 
